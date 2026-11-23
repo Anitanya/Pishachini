@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Pishachini Didi 🎂</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Trebuchet MS', sans-serif;
+    background: linear-gradient(135deg, #ffe0ec, #e7d9ff, #fff0d9);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #70445e;
+}
+
+.screen {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    padding: 30px 18px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: fadeIn 1s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes float {
+    0%,100% {transform: translateY(0);}
+    50% {transform: translateY(-12px);}
+}
+
+@keyframes pulse {
+    0%,100% {transform: scale(1);}
+    50% {transform: scale(1.08);}
+}
+
+@keyframes glow {
+    0%,100% {box-shadow: 0 0 10px #ff8eb8;}
+    50% {box-shadow: 0 0 30px #ff4f99;}
+}
+
+@keyframes candle {
+    0%,100% {transform: scale(1) rotate(-5deg);}
+    50% {transform: scale(1.2) rotate(5deg);}
+}
+
+@keyframes print {
+    0% {transform: translateY(-20px); opacity: 0;}
+    100% {transform: translateY(0); opacity: 1;}
+}
+
+h1 {
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+p {
+    line-height: 1.8;
+    margin: 10px 0;
+}
+
+button {
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, #ff69a5, #bd83ff);
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0 5px 15px #d99abc;
+    transition: .3s;
+}
+
+button:active {
+    transform: scale(.94);
+}
+
+.small-title {
+    letter-spacing: 4px;
+    font-size: 13px;
+    color: #a16a91;
+}
+
+.emoji {
+    font-size: 45px;
+    margin: 15px;
+    animation: float 2s infinite;
+}
+
+.main-title {
+    font-size: 35px;
+    font-weight: 900;
+    background: linear-gradient(90deg, #ff3f91, #a45cff, #ff9b61);
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: pulse 2s infinite;
+}
+
+.stylish {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 19px;
+}
+
+.photo-circle {
+    width: 175px;
+    height: 175px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 7px solid white;
+    box-shadow: 0 0 25px #ff82b4;
+    animation: float 3s infinite;
+    margin-bottom: 20px;
+}
+
+input {
+    padding: 15px;
+    border: 2px solid #f49ac2;
+    border-radius: 25px;
+    outline: none;
+    text-align: center;
+    font-size: 18px;
+    width: 220px;
+    margin-top: 20px;
+}
+
+#error {
+    color: #e34d78;
+    margin-top: 10px;
+}
+
+/* CAKE */
+
+.cake-area {
+    position: relative;
+    height: 230px;
+    width: 260px;
+    margin-top: 35px;
+}
+
+.cake {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    width: 200px;
+    height: 100px;
+    background: #ff8db7;
+    border-radius: 12px 12px 20px 20px;
+    box-shadow: inset 0 -12px #ed6097;
+}
+
+.cake::before {
+    content: "🍓 🍒 🍓";
+    position: absolute;
+    top: -28px;
+    left: 25px;
+    font-size: 25px;
+}
+
+.cake-top {
+    position: absolute;
+    width: 200px;
+    height: 35px;
+    background: #ffe2ec;
+    border-radius: 50%;
+    top: -15px;
+}
+
+.candle {
+    position: absolute;
+    width: 12px;
+    height: 48px;
+    background: repeating-linear-gradient(
+        45deg, white, white 5px, #ff69a5 5px, #ff69a5 10px
+    );
+    bottom: 105px;
+    left: 124px;
+    border-radius: 5px;
+}
+
+.flame {
+    position: absolute;
+    width: 17px;
+    height: 25px;
+    background: radial-gradient(circle, #fff7a0, #ff9b24, #ff4b00);
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    bottom: 150px;
+    left: 122px;
+    animation: candle .5s infinite;
+    filter: drop-shadow(0 0 10px orange);
+}
+
+.flame.off {
+    display: none;
+}
+
+/* CAMERA */
+
+.camera {
+    width: 180px;
+    height: 125px;
+    background: #805b91;
+    border-radius: 20px;
+    position: relative;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 20px #c18ab8;
+}
+
+.camera::before {
+    content: "";
+    position: absolute;
+    top: -17px;
+    left: 30px;
+    width: 55px;
+    height: 20px;
+    background: #805b91;
+    border-radius: 8px 8px 0 0;
+}
+
+.lens {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background: #29233f;
+    border: 8px solid #d9c5eb;
+    border-radius: 50%;
+    top: 30px;
+    left: 58px;
+    box-shadow: inset 0 0 10px #8cbaff;
+}
+
+.flash {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #fff3ad;
+    border-radius: 50%;
+    top: 15px;
+    right: 20px;
+}
+
+.print-photo {
+    width: 230px;
+    padding: 10px 10px 25px;
+    background: white;
+    box-shadow: 0 8px 25px #b98ba8;
+    opacity: 0;
+    transform: translateY(-20px);
+    margin: 15px auto;
+}
+
+.print-photo.show {
+    animation: print 2s forwards;
+}
+
+.print-photo img {
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+}
+
+.print-photo span {
+    display: block;
+    margin-top: 12px;
+    font-family: Georgia, serif;
+    font-size: 12px;
+    color: #9b537b;
+}
+
+/* LETTER */
+
+.letter {
+    max-width: 600px;
+    background: rgba(255,255,255,.85);
+    padding: 25px;
+    border-radius: 22px;
+    box-shadow: 0 8px 30px #d9a4c2;
+    text-align: left;
+    font-family: Georgia, serif;
+    animation: fadeIn 2s;
+}
+
+.letter h1 {
+    color: #e45b9c;
+    text-align: center;
+    font-size: 27px;
+}
+
+.letter p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #77536b;
+}
+
+.final-photos {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.final-photos img {
+    width: 125px;
+    height: 145px;
+    object-fit: cover;
+    border: 5px solid white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px #d5a2bf;
+}
+
+.hearts {
+    position: fixed;
+    top: -20px;
+    pointer-events: none;
+    animation: fall 5s linear forwards;
+    z-index: 10;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.music-btn {
+    position: fixed;
+    right: 12px;
+    top: 12px;
+    z-index: 20;
+    margin: 0;
+    padding: 10px 14px;
+    font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+    🎵 MUSIC
+</button>
+
+<!-- SCREEN 1 -->
+
+<section class="screen active" id="screen1">
+
+    <div class="small-title">A VERY SMALL SURPRISE</div>
+
+    <div class="emoji">👀</div>
+
+    <h1 class="main-title">PISHACHINI DIDI</h1>
+
+    <p class="stylish">okk didi...👻</p>
+
+    <p class="stylish">
+        aaj normal birthday wish nhi milega...😂
+    </p>
+
+    <p>
+        thoda sa effort kiya hai...<br>
+        thoda sa drama kiya hai...<br>
+        or thoda sa bakchodi bhi add hai...😂😜
+    </p>
+
+    <p class="stylish">so please continue...</p>
+
+    <button onclick="nextScreen(2); startMusic();">
+        THERE'S SOMETHING FOR YOU →
+    </button>
+
+</section>
+
+
+<!-- SCREEN 2 -->
+
+<section class="screen" id="screen2">
+
+    <img src="didi-circle.jpg" class="photo-circle"
+         alt="Didi Photo">
+
+    <h1 class="main-title">PISHACHINI DIDI💀</h1>
+
+    <p class="stylish">
+        aage jane ke liye secret password enter karo👀
+    </p>
+
+    <input type="password" id="password"
+           placeholder="Enter Password">
+
+    <p id="error"></p>
+
+    <button onclick="checkPassword()">
+        UNLOCK SURPRISE 🔐
+    </button>
+
+</section>
+
+
+<!-- SCREEN 3 -->
+
+<section class="screen" id="screen3">
+
+    <h1 class="main-title">A LITTLE CAKE FOR YOU 🎂</h1>
+
+    <p class="stylish">Make a wish, Didi! ✨</p>
+
+    <div class="cake-area">
+
+        <div class="flame" id="flame"></div>
+
+        <div class="candle"></div>
+
+        <div class="cake">
+            <div class="cake-top"></div>
+        </div>
+
+    </div>
+
+    <p class="stylish">Your special day deserves a special cake! 💗</p>
+
+    <button onclick="blowCandle()">
+        CONTINUE →
+    </button>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+
+<section class="screen" id="screen4">
+
+    <h1 class="main-title">SAY CHEESE! 📸</h1>
+
+    <p class="stylish">A little memory is printing for you...</p>
+
+    <div class="camera">
+        <div class="flash"></div>
+        <div class="lens"></div>
+    </div>
+
+    <div class="print-photo" id="printed">
+
+        <img src="didi-print.jpg" alt="Birthday Photo">
+
+        <span>HAPPY BIRTHDAY PISHACHINI DIDI 💗</span>
+
+    </div>
+
+    <p id="printingText" class="stylish">
+        Developing your memories... ✨
+    </p>
+
+    <button id="photoNext" style="display:none;"
+            onclick="nextScreen(5)">
+        OPEN YOUR LETTER 💌
+    </button>
+
+</section>
+
+
+<!-- SCREEN 5 -->
+
+<section class="screen" id="screen5">
+
+    <div class="letter">
+
+        <h1>
+            Happy Birthday...<br>
+            Pishachini Didi🎂✨
+        </h1>
+
+        <div class="final-photos">
+
+            <img src="didi-circle.jpg" alt="Didi Photo">
+
+            <img src="didi-print.jpg" alt="Birthday Photo">
+
+        </div>
+
+        <p>
+            To me you’re not just an older sister.... You’re also a true friend... The kind I can tease joke around with and be completely silly around without a second thought... Life is so much brighter and funnier with you in it...
+        </p>
+
+        <p>
+            On your special day my biggest wish for you is endless happiness and complete safety in everything you do... May all your dreams come true one by one even bigger and better than you imagined... Whether it’s Allah or Bhagwaan looking out for you may they keep you blessed smiling and peaceful all the time...
+        </p>
+
+        <p>
+            Have the most amazing birthday Didi and don't worry... I'll still be here to bother you all year long...🎉❤️
+        </p>
+
+        <h1 style="font-size:35px; margin-top:20px;">
+            🎂🎉💗
+        </h1>
+
+        <p style="text-align:center;">
+            MADE WITH LOVE & A LITTLE BIT OF BAKCHODI 😂❤️
+        </p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+let music = document.getElementById("music");
+let musicStarted = false;
+
+function startMusic() {
+
+    if (!musicStarted) {
+        music.play().then(() => {
+            musicStarted = true;
+        }).catch(() => {});
+    }
+
+}
+
+function toggleMusic() {
+
+    if (music.paused) {
+        music.play();
+        document.getElementById("musicBtn").innerHTML = "🔊 MUSIC ON";
+    } else {
+        music.pause();
+        document.getElementById("musicBtn").innerHTML = "🔇 MUSIC OFF";
+    }
+
+}
+
+function nextScreen(number) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById("screen" + number)
+            .classList.add("active");
+
+    if (number === 4) {
+        setTimeout(startPrinting, 1200);
+    }
+
+    if (number === 5) {
+        startHearts();
+    }
+
+}
+
+function checkPassword() {
+
+    let password = document.getElementById("password").value;
+
+    if (password === "2411") {
+
+        document.getElementById("error").innerHTML =
+        "Password correct! Welcome Didi 💗";
+
+        setTimeout(() => {
+            nextScreen(3);
+        }, 1000);
+
+    } else {
+
+        document.getElementById("error").innerHTML =
+        "Wrong password! 😂 Try again Pishachini.";
+
+    }
+
+}
+
+function blowCandle() {
+
+    document.getElementById("flame").classList.add("off");
+
+    setTimeout(() => {
+        nextScreen(4);
+    }, 1000);
+
+}
+
+function startPrinting() {
+
+    document.getElementById("printed")
+            .classList.add("show");
+
+    setTimeout(() => {
+
+        document.getElementById("printingText").innerHTML =
+        "Your memory is ready! 💗";
+
+        document.getElementById("photoNext").style.display =
+        "inline-block";
+
+    }, 2500);
+
+}
+
+function startHearts() {
+
+    setInterval(() => {
+
+        let heart = document.createElement("div");
+
+        heart.className = "hearts";
+
+        let emojis = ["💗", "💕", "✨", "🌸", "💖", "🎀"];
+
+        heart.innerHTML =
+        emojis[Math.floor(Math.random() * emojis.length)];
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+        (15 + Math.random() * 25) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 5000);
+
+    }, 350);
+
+}
+
+</script>
+
+</body>
+</html>
